@@ -63,7 +63,7 @@ export default {
         strategies: {
             'laravelJWT': {
                 provider: 'laravel/jwt',
-                url: 'https://auction-ynov.herokuapp.com/',
+                url: 'https://auction-ynov.herokuapp.com',
                 endpoints: {
                     login: {url: '/api/auth/login', method: 'post'},
                     logout: {url: '/api/auth/logout', method: 'post'},

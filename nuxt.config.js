@@ -2,6 +2,9 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
+
+    target: 'static',
+    ssr: false,
     head: {
         titleTemplate: '%s - Arthur',
         title: 'NuxtJS Front',
@@ -31,6 +34,7 @@ export default {
     buildModules: [
         // https://go.nuxtjs.dev/vuetify
         '@nuxtjs/vuetify',
+        '@nuxtjs/pwa',
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules

@@ -4,22 +4,28 @@
       <v-card>
         <v-card-text>
           <v-form
-            ref="form"
+              ref="form"
           >
             <v-text-field
-              v-model="form.email"
-              label="Email"></v-text-field>
+                v-model="form.email"
+                label="Email"></v-text-field>
             <v-text-field
-              v-model="form.created_at"
-              label="Creation date at"
-              type="datetime"
-              disabled
+                v-model="form.name"
+                label="Email"></v-text-field>
+            <v-text-field
+                v-model="form.avatar"
+                label="Email"></v-text-field>
+            <v-text-field
+                v-model="form.created_at"
+                label="Creation date at"
+                type="datetime"
+                disabled
             ></v-text-field>
             <v-text-field
-              v-model="form.updated_at"
-              label="Last update at"
-              type="datetime"
-              disabled
+                v-model="form.updated_at"
+                label="Last update at"
+                type="datetime"
+                disabled
             ></v-text-field>
           </v-form>
         </v-card-text>
@@ -43,6 +49,8 @@ export default {
       form: {
         id: null,
         email: '',
+        name: '',
+        avatar: '',
         created_at: '',
         updated_at: '',
       },

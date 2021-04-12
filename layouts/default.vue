@@ -89,16 +89,6 @@ export default {
           title: 'Profil',
           to: '/profil'
         },
-        {
-          icon: 'mdi-office-building-outline',
-          title: 'Buildings',
-          to: '/building'
-        },
-        {
-          icon: 'mdi-office-building-outline',
-          title: 'Mon Immeuble',
-          to: '/my-building'
-        }
       ],
       miniVariant: false,
       right: true,

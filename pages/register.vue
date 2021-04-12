@@ -14,9 +14,9 @@
                   v-model="valid"
                 >
                   <v-text-field
-                    name="pseudo"
-                    v-model="register.pseudo"
-                    :rules="register.pseudoRules"
+                    name="email"
+                    v-model="register.email"
+                    :rules="register.emailRules"
                     label="Login"
                     type="text"
                   ></v-text-field>
@@ -49,9 +49,9 @@ export default {
     return {
       valid: true,
       register: {
-        pseudo: '',
-        pseudoRules: [
-          v => !!v || 'Pseudo is required',
+        email: '',
+        emailRules: [
+          v => !!v || 'Email is required',
         ],
         password: '',
         passwordRules: [
@@ -66,7 +66,7 @@ export default {
       if (this.$refs.form.validate()) {
         try {
           await this.$axios.post('/api/auth/register', {
-            pseudo: this.register.pseudo,
+            email: this.register.email,
             password: this.register.password
           }).then(() => {
             this.$router.push({

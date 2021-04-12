@@ -7,37 +7,8 @@
             ref="form"
           >
             <v-text-field
-              v-model="form.pseudo"
-              label="Pseudo"></v-text-field>
-            <v-text-field
-              v-model="form.bio"
-              label="Bio"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.phone"
-              label="Phone number"
-              type="number"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.address"
-              label="Address"
-              type="text"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.city"
-              label="City"
-              type="text"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.zipcode"
-              label="Zipcode"
-              type="text"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.country"
-              label="Country"
-              type="text"
-            ></v-text-field>
+              v-model="form.email"
+              label="Email"></v-text-field>
             <v-text-field
               v-model="form.created_at"
               label="Creation date at"
@@ -71,15 +42,9 @@ export default {
       loading: false,
       form: {
         id: null,
-        pseudo: '',
-        bio: '',
-        phone: '',
+        email: '',
         created_at: '',
         updated_at: '',
-        address: '',
-        city: '',
-        zipcode: '',
-        country: ''
       },
     }
   },

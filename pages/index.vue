@@ -13,7 +13,7 @@
       <li>Click the links to see client side rendering.</li>
     </ul>
 
-    <NuxtLink to="/about">About Page</NuxtLink>
+    <NuxtLink to="/profil">About Page</NuxtLink>
   </div>
 </template>
 <script>

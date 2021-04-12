@@ -41,7 +41,6 @@ export default {
     modules: [
         '@nuxtjs/axios',
         '@nuxtjs/auth-next',
-        '@nuxtjs/pwa',
     ],
 
     axios: {
@@ -64,7 +63,7 @@ export default {
         strategies: {
             'laravelJWT': {
                 provider: 'laravel/jwt',
-                url: 'http://localhost:8000',
+                url: 'https://auction-ynov.herokuapp.com/',
                 endpoints: {
                     login: {url: '/api/auth/login', method: 'post'},
                     logout: {url: '/api/auth/logout', method: 'post'},

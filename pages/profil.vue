@@ -11,10 +11,10 @@
                 label="Email"></v-text-field>
             <v-text-field
                 v-model="form.name"
-                label="Email"></v-text-field>
+                label="Name"></v-text-field>
             <v-text-field
                 v-model="form.avatar"
-                label="Email"></v-text-field>
+                label="Avatar"></v-text-field>
             <v-text-field
                 v-model="form.created_at"
                 label="Creation date at"
@@ -61,7 +61,7 @@ export default {
     async updateUser() {
       if (this.$refs.form.validate()) {
         try {
-          await this.$axios.put(`/api/users/${this.form.id}`, this.form).then((res) => {
+          await this.$axios.put(`/api/auth/me`, this.form).then((res) => {
             this.form = res.data;
           });
         } catch (e) {

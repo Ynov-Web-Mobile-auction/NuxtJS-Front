@@ -1,5 +1,4 @@
-# tuto_front_arthur
-
+# NuxtJS - Front
 ## Build Setup
 
 ```bash

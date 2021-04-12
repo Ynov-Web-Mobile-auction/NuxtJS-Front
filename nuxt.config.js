@@ -49,7 +49,7 @@ export default {
 
     proxy: {
         '/laravel': {
-            target: 'https://laravel-auth.nuxtjs.app',
+            target: 'https://auction-ynov.herokuapp.com',
             pathRewrite: {'^/laravel': ''}
         }
     },

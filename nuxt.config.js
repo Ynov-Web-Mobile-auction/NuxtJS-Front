@@ -48,10 +48,7 @@ export default {
     },
 
     proxy: {
-        '/laravel': {
-            target: 'https://auction-ynov.herokuapp.com',
-            pathRewrite: {'^/laravel': ''}
-        }
+        '/api/auth/register': 'https://auction-ynov.herokuapp.com',
     },
     auth: {
         redirect: {

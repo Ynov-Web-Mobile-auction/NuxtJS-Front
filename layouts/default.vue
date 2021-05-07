@@ -67,12 +67,6 @@ export default {
             display: flex;
         }
     }
-    .v-icon {
-        &._account {
-            // font-size: 30px;
-        }
-    }
-
 
     .nuxt-link-active {
         color: inherit !important;

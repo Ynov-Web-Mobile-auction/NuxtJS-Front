@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="search_box">
-            <v-text-field class="search" label="Search items"></v-text-field>
+            <v-text-field v-model="search" class="search" label="Search items"></v-text-field>
             <div class="options">
                 <v-select
                     v-model="select_categories"
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="items">
-            <div v-for="item in items" :key="item.id" class="item">
+            <div v-for="item in filteredList" :key="item.id" class="item">
                 <v-icon @click="check_heart($event)" class="icon-fav">mdi-heart-outline</v-icon>
                 <img :src=item.picture alt="">
                 <span class="_name">{{ item.name }}</span>
@@ -67,12 +67,20 @@ export default {
                 'Highest Price',
             ],
             items: [],
+            search: '',
         }
     },
     methods: {
         check_heart(e) {
             e.innerText = "mdi-heart";
             console.log(e);
+        }
+    },
+    computed: {
+        filteredList() {
+            return this.items.filter(post => {
+                return post.name.toLowerCase().includes(this.search.toLowerCase())
+            })
         }
     },
     async fetch() {
@@ -113,7 +121,6 @@ export default {
 .items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     .item {
         color: #CCC;
         padding: 0 14px 8px 14px;
@@ -122,7 +129,7 @@ export default {
         border: 1px solid #5e5e5e5d;
         box-sizing: border-box;
         border-radius: 4px;
-        margin-bottom: 30px;
+        margin: 0 16px 30px 16px;
         display: flex;
         flex-direction: column;
         box-shadow: 1px 1px 9px 2px black;

@@ -36,7 +36,7 @@
             <div v-for="item in filteredList" :key="item.id" class="item">
                 <v-icon @click="check_heart($event)" class="icon-fav">mdi-heart-outline</v-icon>
                 <img :src=item.picture alt="">
-                <span class="_name">{{ item.name }}</span>
+                <span v-html="item.nameFormated" class="_name">{{ item.nameFormated }}</span>
                 <div class="bottom">
                     <span class="_creator">{{ item.creator }}</span>
                     <span class="_price">{{ item.price }} ETH</span>
@@ -58,7 +58,7 @@ export default {
                 'Sport',
                 'Other',
             ],
-            select_sortby: [],
+            select_sortby: '',
             items_sortby: [
                 'Recent',
                 'Oldest',
@@ -68,6 +68,7 @@ export default {
             ],
             items: [],
             search: '',
+            sortDirection: "asc",
         }
     },
     methods: {
@@ -77,18 +78,54 @@ export default {
         }
     },
     computed: {
+        searchWords() {
+          return this.search.toLowerCase().split(" ");
+        },
         filteredList() {
-            return this.items.filter(post => {
-                return post.name.toLowerCase().includes(this.search.toLowerCase())
+          return this.items
+            .filter((post) => 
+              this.searchWords.every((word) =>
+                post.name
+                  .toLowerCase()
+                  .normalize("NFD")
+                  .replace(/[\u0300-\u036f]/g, "")
+                  .includes(word)
+              )
+            )
+            .sort((p1, p2) => {
+              switch(this.select_sortby) {
+                case 'Lowest Price':
+                  return p1.price - p2.price;
+                case 'Highest Price':
+                  return p2.price - p1.price;
+                case 'Recent':
+                  return p2.id - p1.id;
+                case 'Oldest':
+                  return p1.id - p2.id;
+                default:
+                  return 0
+              }
+              
             })
-        }
+            .map((post) => {
+              const nameFormated = this.searchWords.length
+                ? post.name.replace(
+                    new RegExp(this.searchWords.join("|"), "gi"),
+                    '<span class="highlight">$&</span>'
+                  )
+                : post.name;
+              return {
+                ...post,
+                nameFormated,
+              };
+            });
+        },
     },
     async fetch() {
         try {
         await this.$axios.get(`/api/items`).then((res) => {
             this.items = res.data;
         });
-        console.log(this.items);
         } catch (e) {
             console.log(e);
         }
@@ -140,6 +177,10 @@ export default {
             text-align: center;
             font-weight: bold;
             margin: 18px 0 auto 0;
+
+            .highlight {
+              color: white;
+            }
         }
 
         .bottom {

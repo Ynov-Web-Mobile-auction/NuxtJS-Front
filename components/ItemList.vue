@@ -1,18 +1,19 @@
 <template>
   <div class="items">
-    <item-card
+    <item-single
       v-for="item in filteredList"
       :key="item.id"
       :item="item"
-    ></item-card>
+      pos="view"
+    ></item-single>
   </div>
 </template>
 <script>
-import ItemCard from "./ItemCard.vue";
+import ItemSingle from "../components/ItemSingle.vue";
 
 export default {
   components: {
-    ItemCard,
+    ItemSingle,
   },
   props: {
     items: {

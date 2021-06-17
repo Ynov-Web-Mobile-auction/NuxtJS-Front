@@ -7,7 +7,7 @@
       fixed
       app
     >
-    <v-list>
+      <v-list>
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title>test</v-list-item-title>
@@ -33,7 +33,7 @@
       </v-btn>
     </v-app-bar>
     <v-main>
-      <item-modal v-if="modalShow" @close="modalShow = false" />
+      <create-item-modal v-if="modalShow" @close="modalShow = false" />
       <v-container>
         <nuxt />
       </v-container>
@@ -41,10 +41,10 @@
   </v-app>
 </template>
 <script>
-import ItemModal from "../components/ItemModal.vue";
+import CreateItemModal from "../components/CreateItemModal.vue";
 
 export default {
-  components: { ItemModal },
+  components: { CreateItemModal },
   data() {
     return {
       modalShow: false,

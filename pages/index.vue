@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       select_categories: [],
-      select_sortby: "",
+      select_sortby: "Recent",
       items: [],
       search: "",
     };

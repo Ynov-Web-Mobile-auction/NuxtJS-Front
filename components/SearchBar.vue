@@ -41,7 +41,6 @@ export default {
       items_sortby: [
         "Recent",
         "Oldest",
-        "Most Favorited",
         "Lowest Price",
         "Highest Price",
       ],

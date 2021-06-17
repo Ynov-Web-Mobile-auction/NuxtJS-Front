@@ -1,23 +1,6 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :clipped="clipped"
-      temporary
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title>test</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-spacer></v-spacer>
+    <v-app-bar fixed app>
       <NuxtLink to="/" class="logo">
         <v-avatar>
           <img src="../assets/img/logo.svg" alt="John" />
@@ -48,8 +31,6 @@ export default {
   data() {
     return {
       modalShow: false,
-      clipped: false,
-      drawer: false,
       title: "PVAE",
     };
   },
@@ -69,10 +50,5 @@ a {
     align-items: center;
     display: flex;
   }
-}
-
-.nuxt-link-active {
-  color: inherit !important;
-  text-decoration: none;
 }
 </style>

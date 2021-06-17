@@ -50,7 +50,9 @@ export default {
 .modal {
   background: #1e1e1e;
   overflow-x: auto;
-  min-width: 500px;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 15px;
   display: flex;
   flex-direction: column;
   border-radius: 5px;

@@ -24,7 +24,7 @@
         </v-btn>
       </div>
       <div v-else>
-        <v-btn color="deep-purple lighten-2" text @click="reserve"> Buy </v-btn>
+        <v-btn color="deep-purple lighten-2" text> Buy </v-btn>
       </div>
     </v-card-actions>
   </v-card>

@@ -8,6 +8,9 @@
         <v-toolbar-title class="title" v-text="title" />
       </NuxtLink>
       <v-spacer></v-spacer>
+      <v-btn icon to="/myitems">
+        <v-icon class="icon _account">mdi-note-text</v-icon>
+      </v-btn>
       <v-btn icon @click="modalShow = true">
         <v-icon class="icon _account">mdi-note-plus</v-icon>
       </v-btn>

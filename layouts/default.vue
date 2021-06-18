@@ -40,7 +40,8 @@
       </v-tooltip>
     </v-app-bar>
     <v-main>
-      <create-item-modal v-if="modalShow" @close="modalShow = false" />
+      <Notification v-if="notif" :notif="notif" @close-notif="notif = null" />
+      <create-item-modal @notif="assignAndWait($event)" v-if="modalShow" @close="modalShow = false" />
       <v-container>
         <nuxt />
       </v-container>
@@ -49,14 +50,28 @@
 </template>
 <script>
 import CreateItemModal from "../components/CreateItemModal.vue";
+import Notification from "../components/Notification.vue";
 
 export default {
-  components: { CreateItemModal },
+  components: {
+    CreateItemModal,
+    Notification,
+  },
   data() {
     return {
       modalShow: false,
       title: "PVAE",
+      notif: null,
     };
+  },
+  methods: {
+    assignAndWait(notif) {
+      console.log("notif");
+      this.notif = notif;
+      setTimeout(() => {
+        this.notif = null;
+      }, 3000);
+    },
   },
 };
 </script>

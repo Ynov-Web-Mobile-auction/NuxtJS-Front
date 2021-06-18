@@ -23,6 +23,10 @@ export default {
     async putItem(item) {
       try {
         await this.$axios.post(`/api/items`, item).then(() => {
+          this.$emit("notif", {
+            type: "success",
+            message: "Item created",
+          });
           this.$router.push({ name: "index" });
           this.close();
         });

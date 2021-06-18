@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-app-bar fixed app>
+    <v-app-bar class="navbar" fixed app>
       <NuxtLink to="/" class="logo">
         <v-avatar>
           <img src="../assets/img/logo.svg" alt="John" />
@@ -8,15 +8,36 @@
         <v-toolbar-title class="title" v-text="title" />
       </NuxtLink>
       <v-spacer></v-spacer>
-      <v-btn icon to="/myitems">
-        <v-icon class="icon _account">mdi-note-text</v-icon>
-      </v-btn>
-      <v-btn icon @click="modalShow = true">
-        <v-icon class="icon _account">mdi-note-plus</v-icon>
-      </v-btn>
-      <v-btn icon to="/profil">
-        <v-icon class="icon _account">mdi-account</v-icon>
-      </v-btn>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            class="btn_nav"
+            v-bind="attrs"
+            v-on="on"
+            icon
+            @click="modalShow = true"
+          >
+            <v-icon class="icon _account">mdi-note-plus</v-icon>
+          </v-btn>
+        </template>
+        <span>Create Item</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn class="btn_nav" v-bind="attrs" v-on="on" icon to="/myitems">
+            <v-icon class="icon _account">mdi-note-text</v-icon>
+          </v-btn>
+        </template>
+        <span>My Items</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn class="btn_nav" v-bind="attrs" v-on="on" icon to="/profil">
+            <v-icon class="icon _account">mdi-account</v-icon>
+          </v-btn>
+        </template>
+        <span>Account</span>
+      </v-tooltip>
     </v-app-bar>
     <v-main>
       <create-item-modal v-if="modalShow" @close="modalShow = false" />
@@ -43,6 +64,13 @@ export default {
 a {
   text-decoration: none;
   color: inherit !important;
+}
+.navbar {
+  padding-right: 8px;
+
+  .btn_nav {
+    margin: 0 5px;
+  }
 }
 .logo {
   display: flex;

@@ -37,7 +37,19 @@
         @input="$v.price.$touch()"
         @blur="$v.price.$touch()"
       ></v-text-field>
-      <v-select
+      <div>
+        <v-date-picker
+          v-model="picker"
+          header-color="primary"
+          label="End Date"
+          color="green lighten-1"
+          @input="$v.picker.$touch()"
+          @blur="$v.picker.$touch()"
+          required
+        ></v-date-picker>
+      </div>
+      <br>
+      <!-- <v-select
         v-model="status"
         :items="items"
         item-text="state"
@@ -46,7 +58,7 @@
         required
         @change="$v.status.$touch()"
         @blur="$v.status.$touch()"
-      ></v-select>
+      ></v-select> -->
       <v-btn class="mr-4" @click="submit">submit</v-btn>
       <v-btn @click="clear">clear</v-btn>
     </form>
@@ -63,14 +75,14 @@ export default {
     picture: { required },
     details: { required, maxLength: maxLength(255) },
     price: { required },
-    status: { required },
+    picker: { required },
   },
   data() {
     return {
       name: "",
       details: "",
       price: "",
-      status: { state: "Public", id: 1 },
+      picker: "",
       items: [
         {
           id: 1,
@@ -125,7 +137,8 @@ export default {
         details: this.details,
         price: this.price,
         picture: this.picture,
-        status: this.status.id,
+        picker: this.picker,
+        status: 0,
       };
       this.$emit("submitItem", item);
     },
@@ -135,7 +148,7 @@ export default {
       this.picture = "";
       this.details = "";
       this.price = "";
-      this.status = "";
+      this.picker = "";
     },
   },
 };

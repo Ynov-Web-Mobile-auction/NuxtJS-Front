@@ -16,6 +16,9 @@
                 v-model="form.avatar"
                 label="Avatar"></v-text-field>
             <v-text-field
+                v-model="form.password"
+                label="Password"></v-text-field>
+            <v-text-field
                 v-model="form.created_at"
                 label="Creation date at"
                 type="datetime"
@@ -47,12 +50,10 @@ export default {
     return {
       loading: false,
       form: {
-        id: null,
         email: '',
         name: '',
+        password: '',
         avatar: '',
-        created_at: '',
-        updated_at: '',
       },
     }
   },
@@ -61,7 +62,7 @@ export default {
     async updateUser() {
       if (this.$refs.form.validate()) {
         try {
-          await this.$axios.put(`/api/auth/me`, this.form).then((res) => {
+          await this.$axios.put(`/api/users`, this.form).then((res) => {
             this.form = res.data;
           });
         } catch (e) {

@@ -24,13 +24,28 @@
         </v-btn>
       </div>
       <div v-else>
-        <v-btn color="deep-purple lighten-2" text> Buy </v-btn>
+        <v-btn
+            color="deep-purple lighten-2" 
+            text
+            @click="modalShow = true"
+          > Buy </v-btn>
       </div>
     </v-card-actions>
+    <create-bid-modal color="deep-purple lighten-2" :id_item="item.id" v-if="modalShow" @close="modalShow = false" />
   </v-card>
 </template>
 <script>
+import CreateBidModal from "../components/CreateBidModal.vue";
+
 export default {
+  components: {
+    CreateBidModal,
+  },
+  data() {
+    return {
+      modalShow: false,
+    };
+  },
   props: {
     item: {
       type: Object,

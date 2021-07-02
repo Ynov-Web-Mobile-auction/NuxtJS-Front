@@ -9,6 +9,7 @@
       :search="search"
       :items="items"
       :select_sortby="select_sortby"
+      create="true"
     ></item-list>
   </div>
 </template>

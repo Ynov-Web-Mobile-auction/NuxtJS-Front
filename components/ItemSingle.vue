@@ -13,7 +13,12 @@
     <v-divider class="mx-4"></v-divider>
 
     <v-card-actions class="btn_view">
-      <div v-if="pos === 'view'">
+      <div v-if="create === 'true'">
+        <v-btn color="deep-purple lighten-2" text @click="createauction">
+          Create Auction
+        </v-btn>
+      </div>
+      <div v-else-if="pos === 'view'">
         <v-btn
           :to="{ path: '/items?id=' + item.id }"
           color="deep-purple lighten-2"
@@ -24,14 +29,17 @@
         </v-btn>
       </div>
       <div v-else>
-        <v-btn
-            color="deep-purple lighten-2" 
-            text
-            @click="modalShow = true"
-          > Buy </v-btn>
+        <v-btn color="deep-purple lighten-2" text @click="modalShow = true">
+          Buy
+        </v-btn>
       </div>
     </v-card-actions>
-    <create-bid-modal color="deep-purple lighten-2" :id_item="item.id" v-if="modalShow" @close="modalShow = false" />
+    <create-bid-modal
+      color="deep-purple lighten-2"
+      :id_item="item.id"
+      v-if="modalShow"
+      @close="modalShow = false"
+    />
   </v-card>
 </template>
 <script>
@@ -44,6 +52,7 @@ export default {
   data() {
     return {
       modalShow: false,
+      duration: {"duration": "2021-06-14 08:37:10"},
     };
   },
   props: {
@@ -54,10 +63,19 @@ export default {
       },
     },
     pos: String,
+    create: String,
   },
   methods: {
     view() {
       console.log("te");
+    },
+    async createauction() {
+      try {
+        await this.$axios
+          .post(`/auctions/${this.item.id}`, this.duration)
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
 };

@@ -5,6 +5,7 @@
       :key="item.id"
       :item="item"
       pos="view"
+      :create="create"
     ></item-single>
   </div>
 </template>
@@ -22,6 +23,7 @@ export default {
         return [];
       },
     },
+    create: String,
     select_sortby: { type: String, default: "" },
     search: { type: String, default: "" },
   },

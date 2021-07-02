@@ -5,21 +5,21 @@
       @filter-select_categories="select_categories = $event"
       @filter-search="search = $event"
     ></search-bar>
-    <item-list
+    <item-list-home
       :search="search"
       :items="items"
       :select_sortby="select_sortby"
-    ></item-list>
+    ></item-list-home>
   </div>
 </template>
 <script>
 import SearchBar from "../components/SearchBar.vue";
-import ItemList from "../components/ItemList.vue";
+import ItemListHome from "../components/ItemListHome.vue";
 
 export default {
   components: {
     SearchBar,
-    ItemList,
+    ItemListHome,
   },
   data() {
     return {

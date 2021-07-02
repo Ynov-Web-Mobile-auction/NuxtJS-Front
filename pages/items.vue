@@ -1,7 +1,11 @@
 <template>
   <div class="item_page">
-    <item-single v-if="item" :item="item"></item-single>
-    <enchere-list v-if="encheres" :encheres="encheres"></enchere-list>
+    <item-single class="item_p" v-if="item" :item="item"></item-single>
+    <enchere-list
+      class="list_ench"
+      v-if="encheres"
+      :encheres="encheres"
+    ></enchere-list>
   </div>
 </template>
 <script>
@@ -38,5 +42,26 @@ export default {
 <style lang="scss">
 .item_page {
   display: flex;
+}
+.item_p {
+  margin-right: 30px;
+}
+.list_ench {
+  margin-right: auto;
+  margin-left: 30px;
+  margin-top: 48px;
+}
+
+@media screen and (max-width: 992px) {
+  .item_page {
+    flex-direction: column;
+  }
+
+  .item_p {
+    margin-right: auto;
+  }
+  .list_ench {
+    margin-left: auto;
+  }
 }
 </style>

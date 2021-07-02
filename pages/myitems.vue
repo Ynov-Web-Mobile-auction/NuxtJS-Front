@@ -32,7 +32,7 @@ export default {
   async fetch() {
     try {
       await this.$axios.get(`/api/users/${this.$auth.user.id}/items`).then((res) => {
-        this.items = res.data;
+        this.items.item = res.data;
       });
     } catch (e) {
       console.log(e);

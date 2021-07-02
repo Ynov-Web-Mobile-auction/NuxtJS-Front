@@ -55,12 +55,14 @@ export default {
 .modal {
   background: #1e1e1e;
   overflow-x: auto;
+  height: 90vh;
   max-width: 500px;
   width: 100%;
   margin: 0 15px;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
+  border: 1px solid gray;
 
   .modal_header {
     padding: 15px;

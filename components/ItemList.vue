@@ -33,7 +33,7 @@ export default {
       return this.items
         .filter((post) =>
           this.searchWords.every((word) =>
-            post.name
+            post.item.name
               .toLowerCase()
               .normalize("NFD")
               .replace(/[\u0300-\u036f]/g, "")
@@ -43,26 +43,26 @@ export default {
         .sort((p1, p2) => {
           switch (this.select_sortby) {
             case "Lowest Price":
-              return p1.price - p2.price;
+              return p1.item.price - p2.item.price;
             case "Highest Price":
-              return p2.price - p1.price;
+              return p2.item.price - p1.item.price;
             case "Recent":
-              return p2.id - p1.id;
+              return p2.item.id - p1.item.id;
             case "Oldest":
-              return p1.id - p2.id;
+              return p1.item.id - p2.item.id;
             default:
               return 0;
           }
         })
         .map((post) => {
           const nameFormated = this.searchWords.length
-            ? post.name.replace(
+            ? post.item.name.replace(
                 new RegExp(this.searchWords.join("|"), "gi"),
                 '<span class="highlight">$&</span>'
               )
-            : post.name;
+            : post.item.name;
           return {
-            ...post,
+            ...post.item,
             nameFormated,
           };
         });

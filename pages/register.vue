@@ -64,12 +64,20 @@ export default {
               password: this.register.password,
             })
             .then(() => {
-              this.$axios.post("/users", {
-                name: "User" + Math.floor(Math.random() * 99999),
-                avatar: "https://picsum.photos/500/500",
-              });
-              this.$router.push({
-                path: "/login",
+              this.$auth.loginWith("laravelJWT", {
+                data: {
+                  email: this.register.email,
+                  password: this.register.password,
+                }
+              }).then(() => {
+                this.$axios.put("/api/users", {
+                  name: "User" + Math.floor(Math.random() * 99999),
+                  avatar: "https://picsum.photos/500/500",
+                }).then(() => {
+                  this.$router.push({
+                    path: "/",
+                  });
+                });
               });
             });
         } catch (e) {
@@ -78,7 +86,6 @@ export default {
       }
     },
   },
-
   auth: false,
 };
 </script>

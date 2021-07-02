@@ -6,7 +6,7 @@ export default {
     target: 'static',
     ssr: false,
     head: {
-        titleTemplate: '%s - Arthur',
+        titleTemplate: '%s - Arthur et Colin',
         title: 'NuxtJS Front',
         htmlAttrs: {
             lang: 'en'

@@ -72,7 +72,7 @@ export default {
     async createauction() {
       try {
         await this.$axios
-          .post(`/auctions/${this.item.id}`, this.duration)
+          .post(`/api/auctions/${this.item.id}`, this.duration)
       } catch (e) {
         console.log(e);
       }

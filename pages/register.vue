@@ -9,10 +9,7 @@
                 <v-toolbar-title>Register form</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form
-                  ref="form"
-                  v-model="valid"
-                >
+                <v-form ref="form" v-model="valid">
                   <v-text-field
                     name="email"
                     v-model="register.email"
@@ -49,39 +46,41 @@ export default {
     return {
       valid: true,
       register: {
-        email: '',
-        emailRules: [
-          v => !!v || 'Email is required',
-        ],
-        password: '',
-        passwordRules: [
-          v => !!v || 'Password is required',
-        ]
-      }
-    }
+        email: "",
+        emailRules: [(v) => !!v || "Email is required"],
+        password: "",
+        passwordRules: [(v) => !!v || "Password is required"],
+      },
+    };
   },
 
   methods: {
     async userRegister() {
       if (this.$refs.form.validate()) {
         try {
-          await this.$axios.post('/api/auth/register', {
-            email: this.register.email,
-            password: this.register.password
-          }).then(() => {
-            this.$router.push({
-              path: '/login'
+          await this.$axios
+            .post("/api/auth/register", {
+              email: this.register.email,
+              password: this.register.password,
             })
-          })
+            .then(() => {
+              this.$axios.post("/users", {
+                name: "User" + Math.floor(Math.random() * 99999),
+                avatar: "https://picsum.photos/500/500",
+              });
+              this.$router.push({
+                path: "/login",
+              });
+            });
         } catch (e) {
           console.log(e);
         }
       }
-    }
+    },
   },
 
-  auth: false
-}
+  auth: false,
+};
 </script>
 
 

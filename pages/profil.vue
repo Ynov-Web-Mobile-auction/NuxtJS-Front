@@ -3,32 +3,25 @@
     <v-layout column>
       <v-card>
         <v-card-text>
-          <v-form
-              ref="form"
-          >
+          <v-form ref="form">
+            <v-text-field v-model="form.email" label="Email"></v-text-field>
+            <v-text-field v-model="form.name" label="Name"></v-text-field>
+            <v-text-field v-model="form.avatar" label="Avatar"></v-text-field>
             <v-text-field
-                v-model="form.email"
-                label="Email"></v-text-field>
-            <v-text-field
-                v-model="form.name"
-                label="Name"></v-text-field>
-            <v-text-field
-                v-model="form.avatar"
-                label="Avatar"></v-text-field>
-            <v-text-field
-                v-model="form.password"
-                label="Password"></v-text-field>
-            <v-text-field
-                v-model="form.created_at"
-                label="Creation date at"
-                type="datetime"
-                disabled
+              v-model="form.password"
+              label="Password"
             ></v-text-field>
             <v-text-field
-                v-model="form.updated_at"
-                label="Last update at"
-                type="datetime"
-                disabled
+              v-model="form.created_at"
+              label="Creation date at"
+              type="datetime"
+              disabled
+            ></v-text-field>
+            <v-text-field
+              v-model="form.updated_at"
+              label="Last update at"
+              type="datetime"
+              disabled
             ></v-text-field>
           </v-form>
         </v-card-text>
@@ -40,22 +33,25 @@
         </v-card-actions>
       </v-card>
     </v-layout>
+    <v-btn style="margin-top: 20px" color="secondary" text @click="disconnect">
+      Disconnect
+    </v-btn>
   </v-container>
 </template>
 
 <script>
 export default {
-  pageTitle: 'My Profile',
+  pageTitle: "My Profile",
   data() {
     return {
       loading: false,
       form: {
-        email: '',
-        name: '',
-        password: '',
-        avatar: '',
+        email: "",
+        name: "",
+        password: "",
+        avatar: "",
       },
-    }
+    };
   },
 
   methods: {
@@ -70,6 +66,18 @@ export default {
         }
       }
     },
+    async disconnect() {
+      try {
+        await this.$auth.logout("laravelJWT", {}).then(() => {
+          this.$router.push({
+            name: "login",
+          });
+        });
+        // await this.$axios.post(`/api/auth/logout`);
+      } catch (e) {
+        console.log(e);
+      }
+    },
   },
   async fetch() {
     await this.$auth.fetchUser().then((res) => {
@@ -77,6 +85,6 @@ export default {
       console.log(this.form);
       console.log(res.data);
     });
-  }
-}
+  },
+};
 </script>

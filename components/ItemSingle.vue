@@ -13,7 +13,7 @@
     <v-divider class="mx-4"></v-divider>
 
     <v-card-actions class="btn_view">
-      <div v-if="create === 'true'">
+      <div v-if="checkauction">
         <v-btn color="deep-purple lighten-2" text @click="createauction">
           Create Auction
         </v-btn>
@@ -52,7 +52,8 @@ export default {
   data() {
     return {
       modalShow: false,
-      duration: {"duration": "2021-06-14 08:37:10"},
+      duration: { duration: "2021-06-14 08:37:10" },
+      status: false,
     };
   },
   props: {
@@ -63,7 +64,6 @@ export default {
       },
     },
     pos: String,
-    create: String,
   },
   methods: {
     view() {
@@ -73,9 +73,22 @@ export default {
       try {
         await this.$axios
           .post(`/api/auctions/${this.item.id}`, this.duration)
+          .then((res) => {
+            console.log(res);
+            this.$router.push({ name: "myitems" });
+            this.$router.app.refresh();
+          });
       } catch (e) {
         console.log(e);
       }
+    },
+  },
+  computed: {
+    checkauction() {
+      this.$axios.get(`/api/auctions/${this.item.id}`).then((res) => {
+        this.status = res.status === 200 ? false : true;
+      });
+      return this.status;
     },
   },
 };

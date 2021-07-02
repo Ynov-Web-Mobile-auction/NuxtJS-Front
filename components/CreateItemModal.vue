@@ -27,7 +27,8 @@ export default {
             type: "success",
             message: "Item created",
           });
-          this.$router.push({ name: "index" });
+          this.$router.push({ name: "myitems" });
+          this.$router.app.refresh()
           this.close();
         });
       } catch (e) {

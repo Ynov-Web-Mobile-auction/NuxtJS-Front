@@ -7,23 +7,6 @@
     ></v-text-field>
     <div class="options">
       <v-select
-        @change="$emit('filter-select_categories', $event)"
-        class="select categories"
-        :items="items_categories"
-        label="Categories"
-        attach
-        multiple
-        outlined
-        ><template v-slot:selection="{ item, index }">
-          <v-chip v-if="index < 2">
-            <span>{{ item }}</span>
-          </v-chip>
-          <span v-if="index === 2" class="grey--text caption">
-            (+{{ select_categories.length - 2 }} others)
-          </span>
-        </template>
-      </v-select>
-      <v-select
         @change="$emit('filter-select_sortby', $event)"
         class="select sortby"
         :items="items_sortby"
@@ -37,7 +20,6 @@
 export default {
   data() {
     return {
-      items_categories: ["Programming", "Design", "Gaming", "Sport", "Other"],
       items_sortby: [
         "Recent",
         "Oldest",
